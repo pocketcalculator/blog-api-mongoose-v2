@@ -2,7 +2,7 @@
   "name": "blog-api-mongoose-v2",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "mocha --exit",
     "start": "node server.js"
