@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const router = express.Router();
 const app = express();
 
-const blogPostRouter = require('./blogpost');
+//const blogPostRouter = require('./blogpost');
 
 // log the http layer
 app.use(morgan('common'));
@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 // `/recipes`, we'll route them to the express
 // router instances we've imported. Remember,
 // these router instances act as modular, mini-express apps.
-app.use('/posts', blogPostRouter);
+//app.use('/posts', blogPostRouter);
 
 // both runServer and closeServer need to access the same
 // server object, so we declare `server` here, and then when
