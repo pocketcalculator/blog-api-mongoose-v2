@@ -2,17 +2,16 @@ const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const router = express.Router();
 const app = express();
-
-const { PORT, DATABASE_URL } = require('./config');
-const { BlogPost } = require('./model');
 
 //const blogPostRouter = require('./blogpost');
 
 // Mongoose internally uses a promise-like object,
 // but its better to make Mongoose use built in es6 promises
 mongoose.Promise = global.Promise;
+
+const { PORT, DATABASE_URL } = require('./config');
+const { BlogPost } = require('./model');
 
 app.use(bodyParser.json());
 
