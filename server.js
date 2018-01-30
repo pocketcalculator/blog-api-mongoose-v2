@@ -25,12 +25,30 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html');
 });
 
+app.get('/posts', (req, res) => {
+  BlogPost
+    .find(filters)
+    .then(BlogPosts => res.json(
+            BlogPosts.map(blogpost => blogpost.serialize())
+    ))
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ message: 'Internal server error' });
+    });
+});
+// can also request by ID
+app.get('posts/:id', (req, res) => {
+  BlogPost
+    // this is a convenience method Mongoose provides for searching
+    // by the object _id property
+    .findById(req.params.id)
+    .then(blogpost => res.json(blogpost.serialize()))
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ message: 'Internal server error' });
+    });
+});
 
-// when requests come into `/shopping-list` or
-// `/recipes`, we'll route them to the express
-// router instances we've imported. Remember,
-// these router instances act as modular, mini-express apps.
-//app.use('/posts', blogPostRouter);
 
 // both runServer and closeServer need to access the same
 // server object, so we declare `server` here, and then when
