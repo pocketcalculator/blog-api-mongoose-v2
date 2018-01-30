@@ -25,9 +25,8 @@ app.get('/', (req, res) => {
 });
 
 app.get('/posts', (req, res) => {
-  const filters = {}
   BlogPost
-    .find(filters)
+    .find()
     .then(BlogPosts => res.json(
             BlogPosts.map(blogpost => blogpost.serialize())
     ))
