@@ -18,12 +18,16 @@ const blogPostSchema = mongoose.Schema({
 })
 
 blogPostSchema.virtual('authorName').get(function(){
-  return `${firstName} ${lastName}`
+  return `${this.author.firstName} ${this.author.lastName}`
 })
 
 blogPostSchema.methods.serialize = function(){
   return {
-    title, content, created, author:this.authorName
+    id: this._id,
+    title: this.title,
+    content: this.content,
+    created: this.created,
+    author: this.authorName
   }
 }
 
